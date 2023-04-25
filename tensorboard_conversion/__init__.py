@@ -50,14 +50,14 @@ def main():
         dfs, images = convert_tb_data(str(summary_dir), tags_to_keep=tags_to_keep)
 
         for name, df in dfs.items():
-            output_path = out_dir / f"{name.replace('/', '_')}.csv"
+            output_path = out_dir / f"{name.replace('/', '-')}.csv"
             logger.info(f"Exporting dataframe '{name}' to '{output_path}'")
             df.to_csv(output_path)
 
         for name, values in images.items():
             for value in values:
                 step, image = value["step"], value["value"]
-                output_path = out_dir / f"{name.replace('/', '_')}_step{step}.png"
+                output_path = out_dir / f"{name.replace('/', '-')}_step{step}.png"
                 logger.info(f"Exporting image '{name}' to '{output_path}'")
                 image.save(output_path, "PNG")
 
