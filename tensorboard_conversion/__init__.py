@@ -18,7 +18,9 @@ from tensorflow.python.summary.summary_iterator import summary_iterator
 logger = logging.getLogger(__name__)
 
 
-def main(args):
+def main():
+    args = sys.args
+
     logging.basicConfig(level=logging.INFO)
     dir_path = Path(args[1])
 
@@ -123,4 +125,4 @@ def convert_tb_data(root_dir, tags_to_keep: List[str] = []):
 
 
 if __name__ == "__main__":
-    main(sys.argv)
+    main()
