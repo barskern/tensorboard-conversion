@@ -19,7 +19,11 @@ logger = logging.getLogger(__name__)
 
 
 def main():
-    args = sys.args
+    if len(sys.argv) != 2:
+        print("ERROR! Should be called with <experiment_dir> as first and only argument")
+        exit(1)
+
+    args = sys.argv
 
     logging.basicConfig(level=logging.INFO)
     dir_path = Path(args[1])
