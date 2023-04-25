@@ -37,6 +37,7 @@ def main(args):
     ]
 
     for experiment_name in os.listdir(dir_path):
+        logger.info(f"Handling experiment '{experiment_name}'")
         summary_dir = dir_path / experiment_name / "summaries"
         out_dir = dir_path / experiment_name / "out"
 
@@ -44,17 +45,15 @@ def main(args):
 
         for name, df in dfs.items():
             output_path = out_dir / f"{name.replace('/', '_')}.csv"
-            logger.info(f"Exporting {name} to {output_path}")
+            logger.info(f"Exporting dataframe '{name}' to '{output_path}'")
             df.to_csv(output_path)
 
         for name, values in images.items():
             for value in values:
                 step, image = value["step"], value["value"]
                 output_path = out_dir / f"{name.replace('/', '_')}_step{step}.png"
-                logger.info(f"Exporting {name} to {output_path}")
+                logger.info(f"Exporting image '{name}' to '{output_path}'")
                 image.save(output_path, "PNG")
-
-        break
 
 
 def convert_tb_data(root_dir, tags_to_keep: List[str] = []):
